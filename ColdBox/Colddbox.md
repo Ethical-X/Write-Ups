@@ -1,8 +1,9 @@
 
-PLATFORM: TryHackMe
-AUTHOR: Hixec
-DATE: 25/08/2026
-TARGET:  10.80.132.0
+- PLATFORM: TryHackMe
+- AUTHOR: Hixec
+- DATE: 25/08/2026
+- TARGET:  10.80.132.0
+
 ## Overview
 The target system was fully compromised due to weak access controls, exposed usernames and weak credential use.
 i was able to gain an initial shell on the system and later escalate privileges to root.
