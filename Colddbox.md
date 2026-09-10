@@ -70,7 +70,7 @@ Finished
 
 
 hidden directory:
-![[01-hidden-c0lddbox.png]]
+![Hidden directory](./01-hidden-c0lddbox.png)
 
 
 A scan with wpscan confirms the usernames and also the outdated WordPress installation.
@@ -109,14 +109,14 @@ output:
 ```
 
 
-![[02-dashboard-c0lddbox.png]]
+![Dashboard](./02-dashboard-c0lddbox.png)
 
 
 
 The file i placed my reverse shell in was functions.php in the TwentyFifteen theme.
 The reverse shell code is on line 3-4.
 
-![[03-edithteme-c0lddbox.png]]
+![Edit theme](./03-edithteme-c0lddbox.png)
 
 
 I used Netcat to start a listener on port 9001 then visited the modified file in my browser to execute the reverse shell code.
