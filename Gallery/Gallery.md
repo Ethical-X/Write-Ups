@@ -100,9 +100,9 @@ while port 8080 returns a login page for simple image gallery system.
 
 After trying some common passwords and having no luck i tried testing for SQL Injection and succeeded.
 
-![[01-galley-SQLI.png]]
+![](./01-galley-SQLI.png)
 
-![[02-gallery-admin.png]]
+![](./02-gallery-admin.png)
 
 The SQLI lead to the compromise of the administrator's account.
 
@@ -110,7 +110,7 @@ The SQLI lead to the compromise of the administrator's account.
 
 Now that i'm in i find the version of simple image gallery is 1.0v
 
-![[03-version.png]]
+![](./03-version.png)
 
 This version of simple image gallery system has 2 critical vulnerabilities
 
@@ -132,7 +132,7 @@ listening on [any] 9001 ...
 
 then update my user profile and pass in my malicious PHP file
 
-![[04-revshell.png]]
+![](./04-revshell.png)
 
 The file was successfully uploaded and my PHP code was executed sending me the reverse shell on my listener.
 
