@@ -139,7 +139,7 @@ $ python3 -c 'import pty;pty.spawn("/bin/bash")'
 www-data@ColddBox-Easy:/var/www/html$
 CTR+Z
 zsh: suspended  nc -lvnp 9001                                                    
-┌──(kali㉿kali)-[~]
+┌──()-[~]
 └─$ stty raw -echo; fg         
 [1]  + continued  nc -lvnp 9001
 
