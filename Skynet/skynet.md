@@ -1,7 +1,11 @@
 PLATFORM: TryHackMe
+
 AUTHOR: tryhackme
+
 DATE: 28/10/2026
+
 SCOPE: ACHIEVE ROOT
+
 TARGET: 10.130.170.87
 
 # Overview:
@@ -169,7 +173,7 @@ I found SquirrelMail 1.4.23 running in the `/squirrelmail` directory. This expla
 
 SquirrelMail version 1.4.23 is affected by CVE-2017-7692, which allows post-authentication RCE. Before trying to exploit this, I needed an authenticated session in SquirrelMail, so I first had to find a way in.
 
-![[01-LOGIN.png]]
+![LOGIN-PAGE](./01-LOGIN.png)
 
 Using the possible passwords and username I found earlier, I was able to perform a successful brute-force attack against the SquirrelMail service and log in as `milesdyson`.
 
@@ -188,7 +192,7 @@ Hydra v9.7 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in mi
  The password found for `milesdyson` was `cyborg007haloterminator`.
 
 After logging in as `milesdyson`, I found the password for his personal SMB share in a received email.
-![[02-SAMBA-PASS.png]]
+![SAMBA-PASS](./02-SAMBA-PASS.png)
 Password: )s{A&2Z=F^n_E.B`
 
 I connected to his personal share to see what I could find:
@@ -270,7 +274,7 @@ cat important.txt
 ```
 
 Visiting the directory took me to `milesdyson`'s personal page. Nothing interesting was there, so I decided to enumerate further and perform a directory scan to see whether there were any other hidden directories.
-![[03-HIDDEN.png]]
+![HIDDEN-DIR](./03-HIDDEN.png)
 
 Command used:
 `gobuster dir -w ~/enum/SecLists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -u http://10.130.170.87/45kra24zxs28v3yd/`
@@ -295,14 +299,14 @@ administrator        (Status: 301) [Size: 339] [--> http://10.130.170.87/45kra24
 
 I found a hidden directory called `administrator`. Upon visiting it, I was met with a Cuppa CMS login page.
 
-![[04-CUPPA.png]]
+![CUPPA-CMS](./04-CUPPA.png)
 Cuppa has a known LFI/RFI vulnerability that allows unauthenticated RCE.
 
 To check whether this instance was vulnerable, I tried reading the target's `/etc/passwd` file and confirmed that it was vulnerable.
 
 Visiting `http://10.130.170.87/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=/etc/passwd` displays the `/etc/passwd` file.
 
-![[05-LFI.png]]
+![LFI-VULN](./05-LFI.png)
 # Initial Access:
 I proceeded to exploit the RFI vulnerability and gain a shell on the target by making the target web server fetch and serve a PHP file containing reverse-shell code. First, I had to start a web server to make my PHP file accessible to the target, and also start a listener to catch the reverse shell.
 
